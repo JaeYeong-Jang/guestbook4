@@ -11,7 +11,7 @@
 </head>
 <body>
 
-	<form action="/guestbook3/insert" method="get">
+	<form action="/guestbook4/insert" method="get">
 		<table border="1">
 			<tr>
 				<td>이름</td>
@@ -39,7 +39,7 @@
 				<td>${pList.name }</td>
 				<td>${pList.date }</td>
 				<td><a
-					href="/guestbook3/deleteForm?no=${pList.no}&pw=${pList.pw}">[삭제]</a></td>
+					href="/guestbook4/deleteForm?no=${pList.no}&pw=${pList.pw}">[삭제]</a></td>
 			</tr>
 
 			<tr>

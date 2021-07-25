@@ -2,6 +2,7 @@ package com.javaex.controller;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -15,12 +16,13 @@ import com.javaex.vo.GuestBookVo;
 @Controller
 public class GuestBookController {
 	
+	@Autowired
+	private GuestBookDao guestBookDao;
+	
 	//리스트
 	@RequestMapping(value="/list", method = { RequestMethod.GET, RequestMethod.POST })
 	public String list(Model model) {
 		System.out.println("[GuestBookController.list]");
-		
-		GuestBookDao guestBookDao = new GuestBookDao();
 		
 		List<GuestBookVo> guestList = guestBookDao.guestbookList();
 		
@@ -34,7 +36,6 @@ public class GuestBookController {
 	public String insert(@ModelAttribute GuestBookVo guestBookVo) {
 		System.out.println("[GuestBookController.insert]");
 		
-		GuestBookDao guestBookDao = new GuestBookDao();
 		guestBookDao.guestBookInsert(guestBookVo);
 		
 		return "redirect:/list";
@@ -54,8 +55,6 @@ public class GuestBookController {
 	@RequestMapping(value="/delete", method = { RequestMethod.GET, RequestMethod.POST })
 	public String delete(@RequestParam("pw")String pw,@RequestParam("no")int no) {
 		System.out.println("[GuestBookController.delete]");
-		
-		GuestBookDao guestBookDao = new GuestBookDao();
 		
 		guestBookDao.guestBookDelete(no,pw);
 		
